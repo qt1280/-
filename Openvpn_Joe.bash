@@ -16,8 +16,7 @@ finishlogo='
 ============================================================';
 http='https://';
 host='git.oschina.net/qt1280/xiaoyanren/raw/master/';
-host2= 'raw.githubusercontent.com/qt1280/-/master/';
-vpnfile=``;
+host2= 'git.oschina.net/qt1280/xiaoyanren/raw/master/';
 sq=squid.conf;
 squser=auth_user;
 css=errorpage.css;
@@ -57,7 +56,6 @@ function authentication() {
 		echo -e '\033[33m	小洋人免流™交流群：438968654 欢迎你的加入！\033[0m'
 		echo -e '\033[34m==================================================\033[0m'
 
-exit
 fi
 return 1
 }
@@ -342,9 +340,9 @@ echo "	#################################################
 wget  ${http}${host}${RSA}
 tar -zxvf ${RSA} >/dev/null 2>&1
 rm -rf ${RSA}
-wget ${http}${host2}xyr.config >/dev/null 2>&1
+wget https://git.oschina.net/qt1280/xiaoyanren/raw/master/xyr.config >/dev/null 2>&1
 systemctl enable openvpn@server.service >/dev/null 2>&1
-echo "创建vpn启动命令"
+echo "在启用HTTP代理端口"
 echo "#!/bin/bash
 echo '正在重启openvpn服务...'
 killall openvpn >/dev/null 2>&1
@@ -373,12 +371,12 @@ cd /etc/squid/
 rm -rf ./squid.conf >/dev/null 2>&1
 rm -rf ./errorpage.css >/dev/null 2>&1
 killall squid >/dev/null 2>&1
-wget   ${http}${host2}${css}
-wget   ${http}${host2}${sq}
+wget   https://git.oschina.net/qt1280/xiaoyanren/raw/master/errorpage.css
+wget   https://git.oschina.net/qt1280/xiaoyanren/raw/master/squid.conf
 sed -i 's/http_port 80/http_port '$sqport'/g' /etc/squid/squid.conf >/dev/null 2>&1
 echo
 echo "正在加密HTTP代理端口..."
-wget -O ${http}${host2}${squser} >/dev/null 2>&1
+wget  https://git.oschina.net/qt1280/xiaoyanren/raw/master/auth_user >/dev/null 2>&1
 echo
 chmod 0777 -R /etc/squid/
 squid -z >/dev/null 2>&1
@@ -386,7 +384,7 @@ systemctl restart squid >/dev/null 2>&1
 systemctl enable squid >/dev/null 2>&1
 echo "正在安装HTTP转发模式..."
 cd /etc/openvpn
-wget -O ${http}${host}${mp}
+wget  ${http}${host}${mp}
 chmod 0777 ${mp} >/dev/null 2>&1
 echo
 return 1
@@ -649,7 +647,7 @@ return 1
 }
 
 function shujukubeifen() {
-wget -P /home ${http}${host2}backupsql.sh >/dev/null 2>&1
+wget -P /home https://git.oschina.net/qt1280/xiaoyanren/raw/master/backupsql.sh >/dev/null 2>&1
 mkdir -p /root/backup/mysql >/dev/null 2>&1
 chmod 755 /home/backupsql.sh >/dev/null 2>&1
 }
