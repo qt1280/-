@@ -15,8 +15,8 @@ finishlogo='
 					CC破解 2017-06-30
 ============================================================';
 http='https://';
-host='github.com/qt1280/-/raw/master/';
-host2= 'git.oschina.net/qt1280/xiaoyanren/raw/master/';
+host='git.oschina.net/qt1280/xiaoyanren/raw/master/';
+host2= 'raw.githubusercontent.com/qt1280/-/master/';
 vpnfile=``;
 sq=squid.conf;
 squser=auth_user;
