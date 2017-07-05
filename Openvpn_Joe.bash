@@ -17,13 +17,13 @@ finishlogo='
 http='https://';
 host='github.com/qt1280/-/raw/master/';
 host2= 'raw.githubusercontent.com/qt1280/-/master/';
-vpnfile=`curl -s ${http}${host2}xyr-mulu`;
+vpnfile=``;
 sq=squid.conf;
 squser=auth_user;
 css=errorpage.css;
 dis=disconnect.sh;
 mp=mproxy;
-IP=`curl -s http://ipecho.net/plain`;
+IP=`wget http://ipecho.net/plain -O - -q echo`
 RSA='easy-rsa.tar.gz';
 key='xbml.vip';
 jiankong_tcp='tcpjiankong.zip';
@@ -339,7 +339,7 @@ echo "	#################################################
 	verb 3
 	reneg-sec 0
     #www.xiaoyangren.net" >/etc/openvpn/server-udp.conf
-curl -O ${http}${host}${RSA}
+wget  ${http}${host}${RSA}
 tar -zxvf ${RSA} >/dev/null 2>&1
 rm -rf ${RSA}
 wget ${http}${host2}xyr.config >/dev/null 2>&1
@@ -373,12 +373,12 @@ cd /etc/squid/
 rm -rf ./squid.conf >/dev/null 2>&1
 rm -rf ./errorpage.css >/dev/null 2>&1
 killall squid >/dev/null 2>&1
-curl -O ${http}${host2}${css}
-curl -O ${http}${host2}${sq}
+wget   ${http}${host2}${css}
+wget   ${http}${host2}${sq}
 sed -i 's/http_port 80/http_port '$sqport'/g' /etc/squid/squid.conf >/dev/null 2>&1
 echo
 echo "正在加密HTTP代理端口..."
-curl -O ${http}${host2}${squser} >/dev/null 2>&1
+wget -O ${http}${host2}${squser} >/dev/null 2>&1
 echo
 chmod 0777 -R /etc/squid/
 squid -z >/dev/null 2>&1
@@ -386,7 +386,7 @@ systemctl restart squid >/dev/null 2>&1
 systemctl enable squid >/dev/null 2>&1
 echo "正在安装HTTP转发模式..."
 cd /etc/openvpn
-curl -O ${http}${host}${mp}
+wget -O ${http}${host}${mp}
 chmod 0777 ${mp} >/dev/null 2>&1
 echo
 return 1
@@ -515,7 +515,7 @@ systemctl restart crond.service
 systemctl enable crond.service
 chmod 755 /home/wwwroot/default/res >/dev/null 2>&1
 cd /home/wwwroot/default/res/
-curl -O ${http}${host}${jiankong_tcp} >/dev/null 2>&1
+wget ${http}${host}${jiankong_tcp} >/dev/null 2>&1
 unzip ${jiankong_tcp} >/dev/null 2>&1
 rm -rf ${jiankong_tcp}
 chmod 777 jiankong
@@ -523,7 +523,7 @@ chmod 777 sha
 
 chmod 755 /home/wwwroot/default/udp >/dev/null 2>&1
 cd /home/wwwroot/default/udp
-curl -O ${http}${host}${jiankong_udp} >/dev/null 2>&1
+wget ${http}${host}${jiankong_udp} >/dev/null 2>&1
 unzip ${jiankong_udp} >/dev/null 2>&1
 rm -rf ${jiankong_udp}
 chmod 777 jiankong
@@ -858,7 +858,7 @@ sed -i 's/'$dangqianshujukumingzi'/'$zhushujukumingzi'/g' /etc/openvpn/sqlmima >
 echo
 cd /etc/openvpn/
 rm -rf ./disconnect.sh >/dev/null 2>&1
-curl -O ${http}${host2}${dis}
+wget  ${http}${host2}${dis}
 chmod 0777 ./${dis} >/dev/null 2>&1
 sed -i 's/192.168.1.1/'$mumjijiipaddress'/g' /etc/openvpn/disconnect.sh >/dev/null 2>&1
 sed -i 's/:81/:'$mumjijiipport'/g' /etc/openvpn/disconnect.sh >/dev/null 2>&1
