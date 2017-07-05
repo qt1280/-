@@ -422,7 +422,7 @@ clear
 echo "正在初始化小洋人免流™流控程序数据..."
 echo "请不要进行任何操作..."
 cd /root
-curl -O ${http}${host}${webfile}
+wget ${http}${host}${webfile}
 unzip -q ${webfile} >/dev/null 2>&1
 sed -i 's/localhost/'$IP:$port'/g' ./xyr/web/install.sql >/dev/null 2>&1
 cp /root/xyr/web/zdmc.sql /root/ >/dev/null 2>&1
